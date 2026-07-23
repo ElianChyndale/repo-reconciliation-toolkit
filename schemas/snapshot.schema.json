@@ -1,0 +1,713 @@
+{
+  "$defs": {
+    "BranchState": {
+      "additionalProperties": false,
+      "properties": {
+        "ahead": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Ahead"
+        },
+        "behind": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Behind"
+        },
+        "commit": {
+          "pattern": "^[0-9a-f]{40,64}$",
+          "title": "Commit",
+          "type": "string"
+        },
+        "divergence_source": {
+          "enum": [
+            "local_tracking_ref",
+            "none"
+          ],
+          "title": "Divergence Source",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "upstream": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Upstream"
+        }
+      },
+      "required": [
+        "name",
+        "commit",
+        "upstream",
+        "ahead",
+        "behind",
+        "divergence_source"
+      ],
+      "title": "BranchState",
+      "type": "object"
+    },
+    "CommitNode": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^[0-9a-f]{40,64}$",
+          "title": "Commit",
+          "type": "string"
+        },
+        "parents": {
+          "items": {
+            "pattern": "^[0-9a-f]{40,64}$",
+            "type": "string"
+          },
+          "title": "Parents",
+          "type": "array"
+        }
+      },
+      "required": [
+        "commit",
+        "parents"
+      ],
+      "title": "CommitNode",
+      "type": "object"
+    },
+    "DependencyRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "declared": {
+          "title": "Declared",
+          "type": "string"
+        },
+        "ecosystem": {
+          "enum": [
+            "python",
+            "node",
+            "rust",
+            "go",
+            "dotnet",
+            "unknown"
+          ],
+          "title": "Ecosystem",
+          "type": "string"
+        },
+        "group": {
+          "title": "Group",
+          "type": "string"
+        },
+        "lock_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Lock Hash"
+        },
+        "lockfile": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Lockfile"
+        },
+        "manifest": {
+          "title": "Manifest",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ecosystem",
+        "manifest",
+        "group",
+        "name",
+        "declared",
+        "lockfile",
+        "lock_hash"
+      ],
+      "title": "DependencyRecord",
+      "type": "object"
+    },
+    "FileRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "executable": {
+          "title": "Executable",
+          "type": "boolean"
+        },
+        "kind": {
+          "enum": [
+            "file",
+            "symlink"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "link_target_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Link Target Hash"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        },
+        "symbols": {
+          "items": {
+            "$ref": "#/$defs/SymbolFingerprint"
+          },
+          "title": "Symbols",
+          "type": "array"
+        }
+      },
+      "required": [
+        "path",
+        "kind",
+        "size",
+        "sha256",
+        "executable",
+        "symbols",
+        "link_target_hash"
+      ],
+      "title": "FileRecord",
+      "type": "object"
+    },
+    "GitState": {
+      "additionalProperties": false,
+      "properties": {
+        "branch": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Branch"
+        },
+        "branches": {
+          "items": {
+            "$ref": "#/$defs/BranchState"
+          },
+          "title": "Branches",
+          "type": "array"
+        },
+        "commit_graph_truncated": {
+          "title": "Commit Graph Truncated",
+          "type": "boolean"
+        },
+        "commits": {
+          "items": {
+            "$ref": "#/$defs/CommitNode"
+          },
+          "title": "Commits",
+          "type": "array"
+        },
+        "detached": {
+          "title": "Detached",
+          "type": "boolean"
+        },
+        "head_commit": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{40,64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Head Commit"
+        },
+        "is_repository": {
+          "title": "Is Repository",
+          "type": "boolean"
+        },
+        "remotes": {
+          "items": {
+            "$ref": "#/$defs/RemoteState"
+          },
+          "title": "Remotes",
+          "type": "array"
+        },
+        "tags": {
+          "items": {
+            "$ref": "#/$defs/TagState"
+          },
+          "title": "Tags",
+          "type": "array"
+        }
+      },
+      "required": [
+        "is_repository",
+        "head_commit",
+        "branch",
+        "detached",
+        "branches",
+        "tags",
+        "remotes",
+        "commits",
+        "commit_graph_truncated"
+      ],
+      "title": "GitState",
+      "type": "object"
+    },
+    "MigrationRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "framework": {
+          "title": "Framework",
+          "type": "string"
+        },
+        "order_key": {
+          "title": "Order Key",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "framework",
+        "order_key",
+        "sha256"
+      ],
+      "title": "MigrationRecord",
+      "type": "object"
+    },
+    "RemoteState": {
+      "additionalProperties": false,
+      "properties": {
+        "fetch_url": {
+          "title": "Fetch Url",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "push_url": {
+          "title": "Push Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "fetch_url",
+        "push_url"
+      ],
+      "title": "RemoteState",
+      "type": "object"
+    },
+    "RuntimeRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "version": {
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "version"
+      ],
+      "title": "RuntimeRecord",
+      "type": "object"
+    },
+    "SchemaRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "schema_kind": {
+          "title": "Schema Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "schema_kind",
+        "sha256"
+      ],
+      "title": "SchemaRecord",
+      "type": "object"
+    },
+    "SymbolFingerprint": {
+      "additionalProperties": false,
+      "properties": {
+        "body_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Body Hash",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        },
+        "language": {
+          "enum": [
+            "python",
+            "javascript",
+            "typescript",
+            "solidity"
+          ],
+          "title": "Language",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "signature_hash": {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "title": "Signature Hash",
+          "type": "string"
+        },
+        "start_line": {
+          "minimum": 1,
+          "title": "Start Line",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "language",
+        "kind",
+        "name",
+        "start_line",
+        "signature_hash",
+        "body_hash"
+      ],
+      "title": "SymbolFingerprint",
+      "type": "object"
+    },
+    "TagState": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^[0-9a-f]{40,64}$",
+          "title": "Commit",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "commit"
+      ],
+      "title": "TagState",
+      "type": "object"
+    },
+    "TestResult": {
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Command",
+          "type": "array"
+        },
+        "duration_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Duration Ms"
+        },
+        "exit_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Exit Code"
+        },
+        "note": {
+          "title": "Note",
+          "type": "string"
+        },
+        "output_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Output Hash"
+        },
+        "status": {
+          "enum": [
+            "not_run",
+            "passed",
+            "failed",
+            "timeout",
+            "error"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "status",
+        "command",
+        "exit_code",
+        "duration_ms",
+        "output_hash",
+        "note"
+      ],
+      "title": "TestResult",
+      "type": "object"
+    },
+    "WorkingTreeChange": {
+      "additionalProperties": false,
+      "properties": {
+        "old_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Old Path"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "staged",
+            "modified",
+            "deleted",
+            "renamed",
+            "copied",
+            "untracked",
+            "conflicted",
+            "type_changed"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "status",
+        "old_path"
+      ],
+      "title": "WorkingTreeChange",
+      "type": "object"
+    }
+  },
+  "$id": "https://elianchyndale.github.io/repo-reconciliation-toolkit/v1/snapshot.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "captured_at": {
+      "format": "date-time",
+      "title": "Captured At",
+      "type": "string"
+    },
+    "dependencies": {
+      "items": {
+        "$ref": "#/$defs/DependencyRecord"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "environment_variable_names": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Environment Variable Names",
+      "type": "array"
+    },
+    "exclusions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Exclusions",
+      "type": "array"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/FileRecord"
+      },
+      "title": "Files",
+      "type": "array"
+    },
+    "git": {
+      "$ref": "#/$defs/GitState"
+    },
+    "migrations": {
+      "items": {
+        "$ref": "#/$defs/MigrationRecord"
+      },
+      "title": "Migrations",
+      "type": "array"
+    },
+    "release_status": {
+      "enum": [
+        "non_git",
+        "dirty",
+        "detached",
+        "clean_tagged",
+        "clean_untagged"
+      ],
+      "title": "Release Status",
+      "type": "string"
+    },
+    "repository_name": {
+      "title": "Repository Name",
+      "type": "string"
+    },
+    "root_fingerprint": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Root Fingerprint",
+      "type": "string"
+    },
+    "runtimes": {
+      "items": {
+        "$ref": "#/$defs/RuntimeRecord"
+      },
+      "title": "Runtimes",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "schemas": {
+      "items": {
+        "$ref": "#/$defs/SchemaRecord"
+      },
+      "title": "Schemas",
+      "type": "array"
+    },
+    "snapshot_id": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "test": {
+      "$ref": "#/$defs/TestResult"
+    },
+    "warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Warnings",
+      "type": "array"
+    },
+    "working_tree": {
+      "items": {
+        "$ref": "#/$defs/WorkingTreeChange"
+      },
+      "title": "Working Tree",
+      "type": "array"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "captured_at",
+    "repository_name",
+    "root_fingerprint",
+    "release_status",
+    "git",
+    "working_tree",
+    "files",
+    "dependencies",
+    "migrations",
+    "schemas",
+    "runtimes",
+    "environment_variable_names",
+    "test",
+    "warnings",
+    "exclusions"
+  ],
+  "title": "RepositorySnapshot",
+  "type": "object"
+}

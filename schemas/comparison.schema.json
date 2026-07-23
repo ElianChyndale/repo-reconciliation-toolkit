@@ -1,0 +1,397 @@
+{
+  "$defs": {
+    "ComparisonSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "changed_files": {
+          "minimum": 0,
+          "title": "Changed Files",
+          "type": "integer"
+        },
+        "conflicts": {
+          "minimum": 0,
+          "title": "Conflicts",
+          "type": "integer"
+        },
+        "dependency_changes": {
+          "minimum": 0,
+          "title": "Dependency Changes",
+          "type": "integer"
+        },
+        "migration_changes": {
+          "minimum": 0,
+          "title": "Migration Changes",
+          "type": "integer"
+        },
+        "schema_changes": {
+          "minimum": 0,
+          "title": "Schema Changes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "changed_files",
+        "conflicts",
+        "dependency_changes",
+        "migration_changes",
+        "schema_changes"
+      ],
+      "title": "ComparisonSummary",
+      "type": "object"
+    },
+    "ConflictCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "file",
+            "symbol",
+            "dependency",
+            "migration",
+            "schema"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ],
+          "title": "Severity",
+          "type": "string"
+        },
+        "symbol": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Symbol"
+        }
+      },
+      "required": [
+        "kind",
+        "path",
+        "symbol",
+        "severity",
+        "reason"
+      ],
+      "title": "ConflictCandidate",
+      "type": "object"
+    },
+    "FileDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "base_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Base Hash"
+        },
+        "left_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Left Hash"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "right_hash": {
+          "anyOf": [
+            {
+              "pattern": "^sha256:[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Right Hash"
+        },
+        "status": {
+          "enum": [
+            "left_only",
+            "right_only",
+            "modified",
+            "left_only_change",
+            "right_only_change",
+            "both_same",
+            "both_different",
+            "deleted_both"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "status",
+        "base_hash",
+        "left_hash",
+        "right_hash"
+      ],
+      "title": "FileDelta",
+      "type": "object"
+    },
+    "SyncStep": {
+      "additionalProperties": false,
+      "properties": {
+        "manual_checks": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Manual Checks",
+          "type": "array"
+        },
+        "order": {
+          "minimum": 1,
+          "title": "Order",
+          "type": "integer"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "order",
+        "title",
+        "rationale",
+        "manual_checks"
+      ],
+      "title": "SyncStep",
+      "type": "object"
+    },
+    "ValueDelta": {
+      "additionalProperties": false,
+      "properties": {
+        "base_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Base Value"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "left_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Left Value"
+        },
+        "right_value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Right Value"
+        },
+        "status": {
+          "enum": [
+            "left_only",
+            "right_only",
+            "modified",
+            "left_only_change",
+            "right_only_change",
+            "both_same",
+            "both_different",
+            "deleted_both"
+          ],
+          "title": "Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "status",
+        "base_value",
+        "left_value",
+        "right_value"
+      ],
+      "title": "ValueDelta",
+      "type": "object"
+    }
+  },
+  "$id": "https://elianchyndale.github.io/repo-reconciliation-toolkit/v1/comparison.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_snapshot_id": {
+      "anyOf": [
+        {
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Base Snapshot Id"
+    },
+    "blockers": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Blockers",
+      "type": "array"
+    },
+    "comparison_id": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Comparison Id",
+      "type": "string"
+    },
+    "conflicts": {
+      "items": {
+        "$ref": "#/$defs/ConflictCandidate"
+      },
+      "title": "Conflicts",
+      "type": "array"
+    },
+    "dependency_deltas": {
+      "items": {
+        "$ref": "#/$defs/ValueDelta"
+      },
+      "title": "Dependency Deltas",
+      "type": "array"
+    },
+    "file_deltas": {
+      "items": {
+        "$ref": "#/$defs/FileDelta"
+      },
+      "title": "File Deltas",
+      "type": "array"
+    },
+    "git_relation": {
+      "title": "Git Relation",
+      "type": "string"
+    },
+    "left_snapshot_id": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Left Snapshot Id",
+      "type": "string"
+    },
+    "migration_deltas": {
+      "items": {
+        "$ref": "#/$defs/ValueDelta"
+      },
+      "title": "Migration Deltas",
+      "type": "array"
+    },
+    "mode": {
+      "enum": [
+        "two_way",
+        "three_way"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "right_snapshot_id": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Right Snapshot Id",
+      "type": "string"
+    },
+    "risk_level": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Risk Level",
+      "type": "string"
+    },
+    "same_repository_identity": {
+      "title": "Same Repository Identity",
+      "type": "boolean"
+    },
+    "schema_deltas": {
+      "items": {
+        "$ref": "#/$defs/ValueDelta"
+      },
+      "title": "Schema Deltas",
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "summary": {
+      "$ref": "#/$defs/ComparisonSummary"
+    },
+    "sync_steps": {
+      "items": {
+        "$ref": "#/$defs/SyncStep"
+      },
+      "title": "Sync Steps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "comparison_id",
+    "mode",
+    "base_snapshot_id",
+    "left_snapshot_id",
+    "right_snapshot_id",
+    "same_repository_identity",
+    "git_relation",
+    "file_deltas",
+    "dependency_deltas",
+    "migration_deltas",
+    "schema_deltas",
+    "conflicts",
+    "blockers",
+    "risk_level",
+    "sync_steps",
+    "summary"
+  ],
+  "title": "ComparisonReport",
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{"kind":"file","path":"contracts/Vault.sol","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}
+{"kind":"symbol","path":"contracts/Vault.sol","reason":"The same symbol changed differently from the shared base.","severity":"high","symbol":"function:settle"}
+{"kind":"file","path":"migrations/002_add.sql","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}
+{"kind":"migration","path":"migrations/002_add.sql","reason":"Both snapshots changed the same migration differently.","severity":"high","symbol":null}
+{"kind":"dependency","path":"pyproject.toml","reason":"Both snapshots changed the dependency or lock state differently.","severity":"medium","symbol":"pydantic"}
+{"kind":"file","path":"pyproject.toml","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}
+{"kind":"file","path":"schemas/risk.schema.json","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}
+{"kind":"schema","path":"schemas/risk.schema.json","reason":"Both snapshots changed the same schema differently.","severity":"high","symbol":null}
+{"kind":"file","path":"src/model.py","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}
+{"kind":"symbol","path":"src/model.py","reason":"The same symbol changed differently from the shared base.","severity":"high","symbol":"function:score"}
+{"kind":"file","path":"uv.lock","reason":"Both snapshots changed the file differently from the shared base.","severity":"high","symbol":null}

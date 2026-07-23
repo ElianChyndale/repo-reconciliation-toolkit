@@ -1,0 +1,192 @@
+{
+  "captured_at": "2026-07-24T00:00:00Z",
+  "dependencies": [
+    {
+      "declared": ">=2.8",
+      "ecosystem": "python",
+      "group": "runtime",
+      "lock_hash": "sha256:b2d765e7aa39d196419620bc848174e89aa61b055a5ca1ca58ed926d895754a7",
+      "lockfile": "uv.lock",
+      "manifest": "pyproject.toml",
+      "name": "pydantic"
+    }
+  ],
+  "environment_variable_names": [
+    "CI",
+    "PYTHONHASHSEED"
+  ],
+  "exclusions": [
+    ".git",
+    ".venv",
+    "node_modules"
+  ],
+  "files": [
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "contracts/Vault.sol",
+      "sha256": "sha256:1534aac5b2be5f3ce3502106a257c8bc7c1ac23d84c2c3ae21ee9a6eb8e8bd5c",
+      "size": 10,
+      "symbols": [
+        {
+          "body_hash": "sha256:65b8eb66f3a85459c6d7995fe29d29d7878611f6a95626e86d0fd676f152bffb",
+          "kind": "function",
+          "language": "solidity",
+          "name": "settle",
+          "signature_hash": "sha256:5b335eaeb44b49c70185c212a12ffa632c7c04cfb88878febf853f67d9c41b3f",
+          "start_line": 1
+        }
+      ]
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "migrations/001_init.sql",
+      "sha256": "sha256:8029c8cac50bf9ecbfa010ac37221ccfff4a4c7691643a629cce3449fd478c58",
+      "size": 12,
+      "symbols": []
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "pyproject.toml",
+      "sha256": "sha256:e0c0b406abdab877c9ee100eadbfe8ded2f09cfc1d902e3b2a6ea90fea7eddd8",
+      "size": 13,
+      "symbols": []
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "schemas/risk.schema.json",
+      "sha256": "sha256:3d54d3b6376b8f6a85ca302411a588a9632b21fbb1e8898c8c3fb2481eeec7a8",
+      "size": 9,
+      "symbols": []
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "src/model.py",
+      "sha256": "sha256:8fdc9e6cfefc230da6a6c3b2d890496417b07625a7c7f3ed3a3c163dc7f37e42",
+      "size": 10,
+      "symbols": [
+        {
+          "body_hash": "sha256:6afca347fe334ea42ca30aed7addce7c0e41ee82e84df2fa6372474cc6b5463a",
+          "kind": "function",
+          "language": "python",
+          "name": "score",
+          "signature_hash": "sha256:1dc17179ac50ce784d10e681e8a91d8811a764f07ef9bf2dcbfc9d9472098cae",
+          "start_line": 1
+        }
+      ]
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "src/service.ts",
+      "sha256": "sha256:d3934ad32790d4cfcb047cfa97f4aec03a1d355bf0d9a9841ffcdb6c9eb30b47",
+      "size": 12,
+      "symbols": [
+        {
+          "body_hash": "sha256:ff4d74f0fc3cd5c49c960e323f701f63620eaed6a5c6366689a1434042f66efe",
+          "kind": "function",
+          "language": "typescript",
+          "name": "rank",
+          "signature_hash": "sha256:f336ab53fef5316220d78ea24b2b4f3e0c29eb7a8673289f026ccad092aa0990",
+          "start_line": 1
+        }
+      ]
+    },
+    {
+      "executable": false,
+      "kind": "file",
+      "link_target_hash": null,
+      "path": "uv.lock",
+      "sha256": "sha256:b2d765e7aa39d196419620bc848174e89aa61b055a5ca1ca58ed926d895754a7",
+      "size": 9,
+      "symbols": []
+    }
+  ],
+  "git": {
+    "branch": "main",
+    "branches": [
+      {
+        "ahead": 1,
+        "behind": 1,
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "divergence_source": "local_tracking_ref",
+        "name": "main",
+        "upstream": "origin/main"
+      }
+    ],
+    "commit_graph_truncated": false,
+    "commits": [
+      {
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "parents": []
+      }
+    ],
+    "detached": false,
+    "head_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "is_repository": true,
+    "remotes": [
+      {
+        "fetch_url": "https://github.com/example/fixture-repo.git",
+        "name": "origin",
+        "push_url": "https://github.com/example/fixture-repo.git"
+      }
+    ],
+    "tags": []
+  },
+  "migrations": [
+    {
+      "framework": "generic",
+      "order_key": "001_init.sql",
+      "path": "migrations/001_init.sql",
+      "sha256": "sha256:8029c8cac50bf9ecbfa010ac37221ccfff4a4c7691643a629cce3449fd478c58"
+    }
+  ],
+  "release_status": "clean_untagged",
+  "repository_name": "fixture-repo",
+  "root_fingerprint": "sha256:dda3797d714fab97cfdd8d550579b9758d54f0ff25fff780edd06a946c91f396",
+  "runtimes": [
+    {
+      "name": "git",
+      "version": "git version fixture"
+    },
+    {
+      "name": "python",
+      "version": "Python 3.11.0"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "schemas": [
+    {
+      "path": "schemas/risk.schema.json",
+      "schema_kind": "json-schema",
+      "sha256": "sha256:3d54d3b6376b8f6a85ca302411a588a9632b21fbb1e8898c8c3fb2481eeec7a8"
+    }
+  ],
+  "snapshot_id": "sha256:efe0e21aa9ce1392f4591f12cd95d76e05771ef5489c9ecf8c964f267c88f18e",
+  "test": {
+    "command": [
+      "python",
+      "-m",
+      "pytest"
+    ],
+    "duration_ms": 100,
+    "exit_code": 0,
+    "note": "Synthetic fixture test result.",
+    "output_hash": "sha256:d19dc291fd72f9a3f2d331a082f46bb582b1ae1da9fbe24f8d04810899b424d8",
+    "status": "passed"
+  },
+  "warnings": [
+    "Ahead/behind counts use existing local tracking refs and may be stale."
+  ],
+  "working_tree": []
+}
