@@ -1,0 +1,257 @@
+{
+  "base_snapshot_id": "sha256:efe0e21aa9ce1392f4591f12cd95d76e05771ef5489c9ecf8c964f267c88f18e",
+  "blockers": [
+    "At least one snapshot has uncommitted or untracked work.",
+    "Potential both-sided conflicts require manual review."
+  ],
+  "comparison_id": "sha256:8aaa2bba3da99b239c943faba93f7028397b4fd03cb4653e5301698d74b12a69",
+  "conflicts": [
+    {
+      "kind": "file",
+      "path": "contracts/Vault.sol",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "symbol",
+      "path": "contracts/Vault.sol",
+      "reason": "The same symbol changed differently from the shared base.",
+      "severity": "high",
+      "symbol": "function:settle"
+    },
+    {
+      "kind": "file",
+      "path": "migrations/002_add.sql",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "migration",
+      "path": "migrations/002_add.sql",
+      "reason": "Both snapshots changed the same migration differently.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "dependency",
+      "path": "pyproject.toml",
+      "reason": "Both snapshots changed the dependency or lock state differently.",
+      "severity": "medium",
+      "symbol": "pydantic"
+    },
+    {
+      "kind": "file",
+      "path": "pyproject.toml",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "file",
+      "path": "schemas/risk.schema.json",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "schema",
+      "path": "schemas/risk.schema.json",
+      "reason": "Both snapshots changed the same schema differently.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "file",
+      "path": "src/model.py",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    },
+    {
+      "kind": "symbol",
+      "path": "src/model.py",
+      "reason": "The same symbol changed differently from the shared base.",
+      "severity": "high",
+      "symbol": "function:score"
+    },
+    {
+      "kind": "file",
+      "path": "uv.lock",
+      "reason": "Both snapshots changed the file differently from the shared base.",
+      "severity": "high",
+      "symbol": null
+    }
+  ],
+  "dependency_deltas": [
+    {
+      "base_value": ">=2.8|uv.lock|sha256:b2d765e7aa39d196419620bc848174e89aa61b055a5ca1ca58ed926d895754a7",
+      "key": "python|pyproject.toml|runtime|pydantic",
+      "left_value": ">=2.9|uv.lock|sha256:27e2b932d4419c2139c99b299a8a6ebc107233f5d9978e52070087a82b1fbbe4",
+      "right_value": ">=2.10|uv.lock|sha256:314603c563e5939a83627de649bbd347f12fb84b69a7fecd8349fd3c10b91b75",
+      "status": "both_different"
+    }
+  ],
+  "file_deltas": [
+    {
+      "base_hash": "sha256:1534aac5b2be5f3ce3502106a257c8bc7c1ac23d84c2c3ae21ee9a6eb8e8bd5c",
+      "left_hash": "sha256:c4ff17e69e4874020b8bad3c426f5691111bb1375dd723fc951d932dc884fb96",
+      "path": "contracts/Vault.sol",
+      "right_hash": "sha256:412d896e3ab0418aa7ed9e5cd799d0cdab21effdb0b9c432dc3eb3632a8d9fcc",
+      "status": "both_different"
+    },
+    {
+      "base_hash": null,
+      "left_hash": null,
+      "path": "docs/right-only.md",
+      "right_hash": "sha256:27042f4e6eca7d0b2a7ee4026df2ecfa51d3339e6d122aa099118ecd8563bad9",
+      "status": "right_only_change"
+    },
+    {
+      "base_hash": null,
+      "left_hash": "sha256:c61af35a01d471280cf5e950d6192778467c4ed6105b9668fe75847e8d7806ff",
+      "path": "migrations/002_add.sql",
+      "right_hash": "sha256:9e80f74258ad5779a39de24a6231f9aedd380f86e1b8bf43298e9f4c413ecaee",
+      "status": "both_different"
+    },
+    {
+      "base_hash": "sha256:e0c0b406abdab877c9ee100eadbfe8ded2f09cfc1d902e3b2a6ea90fea7eddd8",
+      "left_hash": "sha256:478a530b1a9f0d90c0c379508e9a137ee4aef5d0963746e32bc43f615d50ea71",
+      "path": "pyproject.toml",
+      "right_hash": "sha256:1b3e53303901cb3f07a7bd1d7801d96a01ad8f291f33088ad794d8093eb4711d",
+      "status": "both_different"
+    },
+    {
+      "base_hash": "sha256:3d54d3b6376b8f6a85ca302411a588a9632b21fbb1e8898c8c3fb2481eeec7a8",
+      "left_hash": "sha256:86851becd90c47f3551bc65dd94853a3605a9c570199cff57795fedb750a8789",
+      "path": "schemas/risk.schema.json",
+      "right_hash": "sha256:14ae8cebfc0da10e05cac5f19376ace23a1eb9bbecc7f0c5a458149529681173",
+      "status": "both_different"
+    },
+    {
+      "base_hash": "sha256:8fdc9e6cfefc230da6a6c3b2d890496417b07625a7c7f3ed3a3c163dc7f37e42",
+      "left_hash": "sha256:48a99b3dd911347f565e204b14a6ab3fa71aee3d9f35e0a0987cd7086e72a99e",
+      "path": "src/model.py",
+      "right_hash": "sha256:2b8170a23aa95ab6d3afe8996adbc7e9e174210eece15e555cee784194dfcd04",
+      "status": "both_different"
+    },
+    {
+      "base_hash": "sha256:d3934ad32790d4cfcb047cfa97f4aec03a1d355bf0d9a9841ffcdb6c9eb30b47",
+      "left_hash": "sha256:d3934ad32790d4cfcb047cfa97f4aec03a1d355bf0d9a9841ffcdb6c9eb30b47",
+      "path": "src/service.ts",
+      "right_hash": "sha256:5a80e20881cbc433246419ad77b780b6e7a57c219b99c3178fcd97ec76933f2d",
+      "status": "right_only_change"
+    },
+    {
+      "base_hash": "sha256:b2d765e7aa39d196419620bc848174e89aa61b055a5ca1ca58ed926d895754a7",
+      "left_hash": "sha256:27e2b932d4419c2139c99b299a8a6ebc107233f5d9978e52070087a82b1fbbe4",
+      "path": "uv.lock",
+      "right_hash": "sha256:314603c563e5939a83627de649bbd347f12fb84b69a7fecd8349fd3c10b91b75",
+      "status": "both_different"
+    }
+  ],
+  "git_relation": "Commit graphs share history, but neither HEAD is present in the other snapshot's bounded graph.",
+  "left_snapshot_id": "sha256:ecd3815f84101ef6a5c0d4eab643d52520a79bc40655cf089f5f6d690344bf0b",
+  "migration_deltas": [
+    {
+      "base_value": null,
+      "key": "migrations/002_add.sql",
+      "left_value": "generic|002_add.sql|sha256:c61af35a01d471280cf5e950d6192778467c4ed6105b9668fe75847e8d7806ff",
+      "right_value": "generic|002_add.sql|sha256:9e80f74258ad5779a39de24a6231f9aedd380f86e1b8bf43298e9f4c413ecaee",
+      "status": "both_different"
+    }
+  ],
+  "mode": "three_way",
+  "right_snapshot_id": "sha256:8e74977c9d5c1067df5f8533d3a481e22f3645f27cc87f091bd6f9eaabb3a224",
+  "risk_level": "high",
+  "same_repository_identity": true,
+  "schema_deltas": [
+    {
+      "base_value": "json-schema|sha256:3d54d3b6376b8f6a85ca302411a588a9632b21fbb1e8898c8c3fb2481eeec7a8",
+      "key": "schemas/risk.schema.json",
+      "left_value": "json-schema|sha256:86851becd90c47f3551bc65dd94853a3605a9c570199cff57795fedb750a8789",
+      "right_value": "json-schema|sha256:14ae8cebfc0da10e05cac5f19376ace23a1eb9bbecc7f0c5a458149529681173",
+      "status": "both_different"
+    }
+  ],
+  "schema_version": "1.0.0",
+  "summary": {
+    "changed_files": 8,
+    "conflicts": 11,
+    "dependency_changes": 1,
+    "migration_changes": 1,
+    "schema_changes": 1
+  },
+  "sync_steps": [
+    {
+      "manual_checks": [
+        "Verify repository names and sanitized remotes.",
+        "Confirm both snapshots were captured from the intended copies."
+      ],
+      "order": 1,
+      "rationale": "A plan is unsafe if snapshots describe different repositories or stale refs.",
+      "title": "Confirm snapshot identity and freshness"
+    },
+    {
+      "manual_checks": [
+        "Treat dirty working trees as a release blocker.",
+        "Create independent backups outside both repositories.",
+        "Record dirty and untracked paths before any manual Git operation.",
+        "Verify backup readability."
+      ],
+      "order": 2,
+      "rationale": "Uncommitted and untracked work must be recoverable before integration.",
+      "title": "Preserve every working state"
+    },
+    {
+      "manual_checks": [
+        "Confirm the supplied base snapshot.",
+        "Refresh remote refs manually only after backups are verified."
+      ],
+      "order": 3,
+      "rationale": "Three-way attribution and remote divergence require a trusted base.",
+      "title": "Establish the shared base and current remote state"
+    },
+    {
+      "manual_checks": [
+        "Resolve migration order collisions.",
+        "Review schema compatibility and generated artifacts.",
+        "Select dependency and lockfile changes intentionally."
+      ],
+      "order": 4,
+      "rationale": "These changes constrain the order in which source code can be integrated.",
+      "title": "Reconcile schemas, migrations, and dependencies first"
+    },
+    {
+      "manual_checks": [
+        "Start with one-sided changes.",
+        "Resolve both-sided symbols with project owners.",
+        "Do not discard a side solely because a file-level hash differs."
+      ],
+      "order": 5,
+      "rationale": "File and symbol candidates identify where manual review is most valuable.",
+      "title": "Integrate source changes in small reviewed units"
+    },
+    {
+      "manual_checks": [
+        "Run targeted tests before broad suites.",
+        "Parse generated research artifacts.",
+        "Review failures and limitations."
+      ],
+      "order": 6,
+      "rationale": "A clean merge is not evidence that behavior remains correct.",
+      "title": "Run project validation"
+    },
+    {
+      "manual_checks": [
+        "Inspect the final diff and commit graph.",
+        "Confirm no secrets or machine-local paths were introduced.",
+        "Update the remote only after review approval."
+      ],
+      "order": 7,
+      "rationale": "Remote updates remain a deliberate human-controlled action.",
+      "title": "Review and publish manually"
+    }
+  ]
+}

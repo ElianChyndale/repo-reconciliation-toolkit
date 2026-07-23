@@ -1,0 +1,4 @@
+snapshot,files,dependencies,migrations,schemas,working_tree_changes
+base,7,1,1,1,0
+left,8,1,2,1,1
+right,9,1,2,1,0

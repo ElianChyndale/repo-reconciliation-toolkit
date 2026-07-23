@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+
+      - name: Check generated schemas
+        run: python scripts/generate-schemas.py --check
+
+      - name: Check generated fixtures
+        run: python scripts/generate-fixtures.py --check
+
+      - name: Test
+        run: python -m pytest
+
+      - name: Lint
+        run: python -m ruff check src tests scripts
+
+      - name: Type-check
+        run: python -m mypy src/repo_reconciliation_toolkit
+
+      - name: Validate snapshots
+        run: repo-reconcile validate fixtures/snapshots
+
+      - name: Compare snapshots
+        run: >-
+          repo-reconcile compare
+          fixtures/snapshots/left.json
+          fixtures/snapshots/right.json
+          --base fixtures/snapshots/base.json
+          --output reports/v0.1
+
+      - name: Generate release reports
+        run: repo-reconcile report --output reports/v0.1
+
+      - name: Parse machine artifacts
+        run: python scripts/check-artifacts.py
+
+      - name: Smoke-test a real repository snapshot
+        run: >-
+          repo-reconcile snapshot .
+          --output reports/tmp/self
+          --captured-at 2026-07-24T00:00:00Z
+
+      - name: Require deterministic tracked outputs
+        run: git diff --exit-code
+
